@@ -6,6 +6,17 @@ node('master')
 node('built-in') 
  master
 {
+ loans
+    stage('Cont_download_loans') 
+    {
+       git 'https://github.com/selenium-saikrishna/maven.git'
+    }
+    stage('Cont_build_loans') 
+    {
+       sh label: '', script: 'mvn package'
+    }
+    }
+
     stage('Continuous Download') 
 	{
     git 'https://github.com/sunildevops77/maven.git'
@@ -27,3 +38,4 @@ sh label: '', script: 'scp /home/ubuntu/.jenkins/workspace/ScriptedPipeline/weba
 sh label: '', script: 'scp /home/ubuntu/.jenkins/workspace/ScriptedPipeline/webapp/target/webapp.war   ubuntu@172.31.22.88:/var/lib/tomcat8/webapps/prodenv.war'
 	}
 }
+ master
